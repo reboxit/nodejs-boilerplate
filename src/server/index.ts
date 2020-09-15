@@ -5,6 +5,7 @@ import pino from 'koa-pino-logger';
 import Boom from 'boom';
 import errorHandler from './middleware/errorHandler';
 import health from './health';
+import {logger} from '../logger';
 
 export default function createServer(): Server {
   const app = new Koa();
@@ -13,7 +14,7 @@ export default function createServer(): Server {
   app.use(health.routes()).use(health.allowedMethods());
 
   // setup logging
-  app.use(pino());
+  app.use(pino({logger: logger}));
 
   // handle errors
   app.use(errorHandler);
