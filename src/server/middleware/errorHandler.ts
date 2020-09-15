@@ -1,5 +1,5 @@
 import Boom from 'boom';
-import {logger} from '../../support/logger';
+import {logger} from '../../logger';
 import {Context, Next} from 'koa';
 
 export default async function errorHandler(ctx: Context, next: Next): Promise<void> {

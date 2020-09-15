@@ -1,5 +1,5 @@
 import './env';
-import {logger} from './logger';
+import {logger} from '../logger';
 
 const port = process.env.API_PORT || 3000;
 

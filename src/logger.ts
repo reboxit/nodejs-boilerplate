@@ -1,7 +1,9 @@
 import pino from 'pino';
 
-const logLevel = 'debug';
+const level = process.env.LOG_LEVEL || 'info';
+
 export const logger = pino({
   name: 'app',
-  level: logLevel,
+  level: level,
+  prettyPrint: process.env.NODE_ENV != 'production',
 });
