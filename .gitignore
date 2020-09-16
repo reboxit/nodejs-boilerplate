@@ -118,6 +118,7 @@ build
 # dotenv environment variables file
 .env
 .env.test
+.docker-compose.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -166,3 +167,4 @@ atlassian-ide-plugin.xml
 
 # Reports
 reports/
+
