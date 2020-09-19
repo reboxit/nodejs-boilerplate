@@ -6,6 +6,7 @@ import Boom from 'boom';
 import errorHandler from './middleware/errorHandler';
 import health from './health';
 import {logger} from '../logger';
+import auth from './auth';
 
 export default function createServer(): Server {
   const app = new Koa();
@@ -28,6 +29,8 @@ export default function createServer(): Server {
       },
     })
   );
+
+  app.use(auth.routes()).use(auth.allowedMethods());
 
   return http.createServer(app.callback());
 }
