@@ -1,1 +1,1 @@
-pm2-runtime start ecosystem.config.js
+pm2-runtime start ecosystem.config.js --env production

@@ -9,7 +9,9 @@ module.exports = {
       // Then the platform should discard and recreate the container
       max_restarts: 10,
       watch: false,
-      max_memory_restart: '1G',
+      max_memory_restart: '384M',
+      error_file: '/dev/null',
+      out_file: '/dev/null'
     },
   ],
 };
