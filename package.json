@@ -16,7 +16,7 @@
     "debug": "node --inspect-brk $(type -p serverless) invoke local",
     "docs": "typedoc --tsconfig --out docs src",
     "functionaltests": "jest -c jest.functionaltests.config.js",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint --ext .js,.ts src",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "start": "pm2 start",
     "start:dev": "nodemon",
