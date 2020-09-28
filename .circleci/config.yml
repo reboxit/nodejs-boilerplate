@@ -18,14 +18,25 @@ jobs:
       - run:
           command: npm run test
 
+  functional_tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          command: ./scripts/functional-tests.sh
+
 orbs:
   node: circleci/node@4.0.1
 version: 2.1
 
 workflows:
-  test_my_app:
+  build_and_test:
     jobs:
       - lint
       - unit_tests:
           requires:
             - lint
+      - functional_tests:
+          requires:
+            - unit_tests
