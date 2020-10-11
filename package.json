@@ -15,13 +15,17 @@
     "build": "tsc",
     "debug": "node --inspect-brk $(type -p serverless) invoke local",
     "docs": "typedoc --tsconfig --out docs src",
-    "functionaltests": "jest -c jest.functionaltests.config.js",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint --ext .js,.ts src",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "start": "pm2 start",
     "start:dev": "nodemon",
     "pretest": "mkdir -p ./reports/units && cp ./node_modules/jest-html-reporter/style/defaultTheme.css ./reports/units/style.css",
     "test": "jest",
+    "functionaltests": "run-s functionaltests:prepare functionaltests:run",
+    "functionaltests:run": "jest -c jest.functionaltests.config.js",
+    "functionaltests:prepare": "run-s build docker:up wait:api",
+    "docker:up": "docker-compose down && docker-compose up -d --build api",
+    "wait:api": "wait-on -d 1000 -t 30000 http://localhost:3000/health",
     "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
   },
   "dependencies": {
@@ -61,6 +65,8 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.3",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "npm-run-all": "^4.1.5",
+    "wait-on": "5.2.0"
   }
 }
